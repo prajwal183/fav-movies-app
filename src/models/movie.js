@@ -12,7 +12,8 @@ class Movie {
     poster,
     released_on,
     slug,
-    title
+    title,
+    isLiked
   ) {
     this.backdrop = backdrop;
     this.cast = cast;
@@ -27,6 +28,7 @@ class Movie {
     this.released_on = released_on;
     this.slug = slug;
     this.title = title;
+    this.isLiked = isLiked;
   }
 }
 
