@@ -73,16 +73,7 @@ moviesLiked.navigationOptions = (navData) => {
       elevation: 0,
     },
     headerTintColor: Colors.secondaryColor,
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          iconName="search"
-          onPress={() => {
-            navData.navigation.navigate("");
-          }}
-        />
-      </HeaderButtons>
-    ),
+   
   };
 };
 const styles = StyleSheet.create({

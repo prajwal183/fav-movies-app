@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   TouchableHighlight,
-  StatusBar
+  StatusBar,
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
@@ -28,9 +28,9 @@ const movieDetails = (props) => {
   return (
     <View style={styles.container}>
       <StatusBar
-          barStyle="dark-content"
-          backgroundColor={Colors.primaryColor}
-        />
+        barStyle="dark-content"
+        backgroundColor={Colors.primaryColor}
+      />
       <View style={styles.category}>
         <Text style={styles.categorytext}>{movie.classification}</Text>
       </View>
@@ -64,8 +64,7 @@ const movieDetails = (props) => {
         <Text style={styles.detail}>
           {new Date(movie.released_on).getDate() +
             "-" +
-            new Date(movie.released_on).getMonth() +
-            1 +
+            (new Date(movie.released_on).getMonth() + 1) +
             "-" +
             new Date(movie.released_on).getFullYear()}
         </Text>
@@ -76,7 +75,7 @@ const movieDetails = (props) => {
         style={styles.heart}
         onPress={() => {
           dispatch(movieActions.toggleFavourite({ id: id }));
-          setRefresh(!refresh)
+          setRefresh(!refresh);
         }}
       >
         <FontAwesome

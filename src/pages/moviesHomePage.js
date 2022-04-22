@@ -16,14 +16,18 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import MovieSection from "../components/MovieSection";
 import HeaderButton from "../components/HeaderButton";
 import Fab from "../components/Fab";
+import Slider from "@react-native-community/slider";
 
 const moviesHomePage = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movie.availableList);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [imdb, setImdb] = useState("");
+  const fetchedmovies = useSelector((state) => state.movie.availableList);
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [imdb, setImdb] = useState(0);
+  const [displayImdb, setDisplayImdb] = useState(0);
+  const movies = fetchedmovies.filter(item => item.imdb_rating >= imdb);
+  
   const loadData = useCallback(async () => {
     try {
       await dispatch(
@@ -78,23 +82,38 @@ const moviesHomePage = (props) => {
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <Text style={styles.imdb}>IMDb - {imdb} ★</Text>
+
+            <Slider
+              style={{ width: 200, height: 40 }}
+              minimumValue={0}
+              maximumValue={10}
+              step={1}
+              value={imdb}
+              onValueChange={(value) => {
+                setDisplayImdb(value);
+              }}
+              onSlidingComplete={(value)=> setImdb(value)}
+              minimumTrackTintColor={Colors.secondaryColor}
+              maximumTrackTintColor="#000000"
+            />
             <TouchableHighlight
               style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
               onPress={() => {
                 setModalVisible(!modalVisible);
               }}
             >
-              <Text style={{color:'white', fontWeight:'bold'}}>Close</Text>
+              <Text style={{ color: "white", fontWeight: "bold" }}>Close</Text>
             </TouchableHighlight>
           </View>
         </View>
       </Modal>
       <Fab
-          iconName="share-variant"
-          icon="filter"
-          style={styles.fab}
-          onPress={() => setModalVisible(true)}
-        ></Fab>
+        iconName="share-variant"
+        icon="filter"
+        style={styles.fab}
+        onPress={() => setModalVisible(true)}
+      ></Fab>
     </View>
   );
 };
@@ -165,11 +184,26 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     elevation: 2,
+    width:100,
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  imdb: {
+    backgroundColor: "#f3ce13",
+    borderRadius: 5,
+    marginTop: 5,
+    marginBottom: 5,
+    height: 25,
+    width: 90,
+    padding: 4,
+    color: "black",
+    fontSize: 13,
+    fontWeight: "bold",
   },
   fab: {
     position: "absolute",
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     backgroundColor: Colors.secondaryColor,
     elevation: 8,
     right: 10,
