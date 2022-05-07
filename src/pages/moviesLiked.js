@@ -73,6 +73,16 @@ moviesLiked.navigationOptions = (navData) => {
       elevation: 0,
     },
     headerTintColor: Colors.secondaryColor,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          iconName="cart"
+          onPress={() => {
+          navData.navigation.navigate("flyo");
+          }}
+        />
+      </HeaderButtons>
+    ),
    
   };
 };

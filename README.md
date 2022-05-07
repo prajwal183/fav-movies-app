@@ -9,13 +9,13 @@ movie as his liked, or remove the movie from his liked movies.
 
 - Search Movies and add it to the Favourite List
 - Filter the movies with their IMDb ratings
-- All the movies are classified in with the age category e.g7+, 13+, etc
+- All the movies are classified in with the age category e.g 7+, 13+, etc
 - On clicking each movie the user is lead to a movie details page where he can see all the details of the movie
 - On the bottom tab navigator find the page called Facourites where the user can find the movies that he as marked as his favourite
 
 
 ## Tech Used
-
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 - React Native

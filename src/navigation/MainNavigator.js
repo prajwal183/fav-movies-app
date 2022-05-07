@@ -10,16 +10,18 @@ import movieDetails from "../pages/movieDetails";
 import moviesHomePage from "../pages/moviesHomePage";
 import moviesLiked from "../pages/moviesLiked";
 import SearchMovie from "../pages/searchMovie";
+import ProductScreen from "../pages/filters";
 
 const homePageStackNavigator = createStackNavigator({
   homepage: moviesHomePage,
   homepageDetails: movieDetails,
-  search: SearchMovie
+  search: SearchMovie,
 });
 
 const likedPageStackNavigator = createStackNavigator({
   likedpage: moviesLiked,
   likedDetails: movieDetails,
+  flyo: ProductScreen,
 });
 
 const materialBottomTab = createMaterialBottomTabNavigator(
